@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&family=Lexend+Deca:wght@100..900&display=swap');
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-brands/css/uicons-brands.css');
+@import url('https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css');
+@import url('https://cdn-uicons.flaticon.com/3.0.0/uicons-regular-straight/css/uicons-regular-straight.css');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.ofertas {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    /* border: 2px solid black; */
+}
+
+.tarjeta {
+    width: 280px;
+    overflow: hidden;
+    transition: 0.4s;
+    margin: 0px 15px 25px;
+    padding: 10px;
+    /* border: solid black; */
+    box-shadow: 0.4rem 0.4rem 1.2rem rgb(48, 45, 45);
+}
+
+.tarjeta img {
+    height: 20rem;
+    /* height: auto; */
+    transition: 0.4s;
+    margin-bottom: 5px;
+}
+
+.tarjeta img:hover {
+    transform: scale(1.03);
+}
+
+.descripcion {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.tarjeta-boton {
+    border: 0;
+    opacity: 1;
+    background-color: #db6e01;
+    color: #ECDFCC;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    border: 2px solid #db6e01;
+    letter-spacing: 1px;
+    transition: 0.5s;
+}
+
+.tarjeta-boton:hover {
+    border: solid 2px red;
+    background-color: white;
+    color: red;
+}
+
+.tarjeta-boton:active {
+    border: solid 2px red;
+    background-color: red;
+    color: white;
+}
+
+
+/* ----CARRITO----- */
+.carrito-productos {
+    border: solid green;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* height: 70vh; */
+    margin: 10px;
+}
+
+.carrito-producto {
+    display: grid;
+    grid-template-columns: 0.3fr 1.1fr 0.4fr 0.5fr 0.5fr 0.2fr;
+    text-align: center;
+    justify-items: center;
+    align-items: center;
+    max-width: 1024px;
+    width: 80%;
+    /* border: 1px solid black; */
+    margin: 10px;
+    padding: 15px;
+    gap: 6px;
+    box-shadow: 0.4rem 0.4rem 1.2rem rgb(48, 45, 45);
+}
+
+.carrito-producto-imagen {
+    width: 8rem;
+}
+
+.carrito-producto-cantidad {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.carrito-producto small {
+    color: red;
+}
+
+.carrito-producto-restar {
+    border: 0;
+    font-size: 1.2rem;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    background-color: red;
+    width: 26px;
+    height: 26px;
+    border-radius: 1rem;
+    margin-right: 10px;
+}
+
+.carrito-producto-sumar {
+    border: 0;
+    font-size: 1.2rem;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    background-color: red;
+    width: 26px;
+    height: 26px;
+    border-radius: 1rem;
+    margin-left: 10px;
+}
+
+.carrito-producto-eliminar {
+    border: 0;
+    font-size: 1.2rem;
+    color: red;
+    background-color: white;
+    cursor: pointer;
+}
+
+.contenedor-carrito-productos-acciones {
+    /* border: solid green; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrito-productos-acciones {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    max-width: 1024px;
+    margin: 10px;
+    /* border: 1px solid black; */
+}
+
+.boton-vaciar-carrito,
+.boton-productos-comprar,
+.boton-seguir-comprando {
+    background-color: #db6e01;
+    color: #ECDFCC;
+    padding: 0.5rem;
+    margin: 10px;
+    border-radius: 1rem;
+    cursor: pointer;
+    border: 2px solid #db6e01;
+    letter-spacing: 1px;
+    transition: 0.4s;
+}
+
+.boton-vaciar-carrito:hover,
+.boton-productos-comprar:hover,
+.boton-seguir-comprando:hover {
+    border: solid 2px red;
+    background-color: white;
+    color: red;
+}
+
+.boton-vaciar-carrito:active,
+.boton-productos-comprar:active,
+.boton-seguir-comprando:active {
+    border: solid 2px red;
+    background-color: red;
+    color: white;
+}
+
+.carrito-productos-total {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.carrito-vacio {
+    display: none;
+}

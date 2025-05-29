@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/styles.css">
+    <title>Carrito</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="./index.html"><img src="./img/logo.png" alt="logo"></a>
+            <a href="./index.html">
+                <h1>best<span>sellers</span></h1>
+            </a>
+        </div>
+
+        <div class="buscador">
+            <form action="">
+                <label for="buscar"></label>
+                <input type="text" name="buscar" id="buscar" maxlength="400" placeholder="Buscar" required>
+
+                <button><i class="fi fi-rr-search"></i></button>
+            </form>
+        </div>
+
+        <div class="carro">
+            <!-- se completa con los datos del localStorage -->
+        </div>
+
+        <button id="abrir" class="burger">
+            <i class="fi fi-br-menu-burger"></i>
+        </button>
+    </header>
+
+    <nav id="nav" class="nav">
+        <button id="cerrar" class="equis"><i class="fi fi-br-cross"></i></button>
+        <ul class="nav-list">
+            <li><a href="./ofertas.html">Ofertas</a></li>
+            <li><a href="./promociones.html">Promociones</a></li>
+            <li><a href="./novedades.html">Novedades</a></li>
+            <li><a href="./contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="carrito-vacio">
+            <h3>Su carrito está vacio</h3>
+        </div>
+
+        <div class="carrito-comprado">
+            <!-- se completa con los datos del JS -->
+        </div>
+
+        <div class="carrito-productos">
+            <!-- se completa con los datos del localStorage -->
+        </div>
+
+        <div class="seguir-comprando">
+            <a href="./index.html"><button class="boton-seguir-comprando">Ver mas productos</button></a>
+        </div>
+
+        <div class="contenedor-carrito-productos-acciones">
+            <div class="carrito-productos-acciones">
+                <div>
+                    <button class="boton-vaciar-carrito">Vaciar carrito</button>
+                </div>
+
+                <div class="carrito-productos-total">
+                    <div>
+                        <h4>Total</h4>
+                    </div>
+
+                    <div>
+                        <h4 id="total">$ 50</h4>
+                    </div>
+
+                    <div>
+                        <button class="boton-productos-comprar">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <script src="./scripts/carrito.js"></script>
+</body>
+
+</html>
