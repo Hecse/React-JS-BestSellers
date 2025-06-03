@@ -74,6 +74,131 @@ a {
     color: white;
 }
 
+.detalle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ----PRODUCTO----- */
+.producto {
+    display: flex;
+    justify-content: center;
+    margin: 30px;
+    /* border: solid black; */
+}
+
+.producto-tarjeta {
+    /* border: solid red; */
+    max-width: 1024px;
+    display: grid;
+    grid-template-columns: 1.5fr 3fr;
+    padding: 25px;
+    /* text-align: left; */
+    box-shadow: 0.4rem 0.4rem 1.2rem rgb(48, 45, 45);
+}
+
+.producto-imagen {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-around; */
+    flex-direction: column;
+}
+
+.producto-imagen img {
+    width: 250px;   
+    /* overflow: hidden; */    
+}
+
+.producto-detalle {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+    margin-left: 10px;
+    /* border: solid green; */
+    gap: 10px;    
+}
+
+.producto-detalle h3 {
+    text-align: left;
+    color: chocolate;
+    /* border: solid black; */
+}
+
+.medios-de-pago i {
+    margin-right: 13px;
+    margin-top: 10px;
+    color: blue;
+    font-size: 1.5rem;
+}
+
+.medios-de-pago p {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+.producto-boton-carrito {
+    background-color: #db6e01;
+    color: #ECDFCC;
+    margin: 30px ;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    border: 2px solid #db6e01;
+    letter-spacing: 1px;
+    transition: 0.4s;
+    width: 200px;
+}
+
+.producto-boton-carrito:hover {
+    border: solid 2px red;
+    background-color: white;
+    color: red;
+}
+
+.producto-boton-carrito:active {
+    border: solid 2px red;
+    background-color: red;
+    color: white;
+}
+
+.producto-descripcion {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    text-align: left;
+    /* border: 1px solid green; */
+}
+
+
+
+/* ---COMENTARIOS--- */
+.comentarios {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 35px;
+    margin-top: 25px;
+    /* border: 2px solid chocolate; */
+}
+
+.comentario {
+    max-width: 1024px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    text-align: left;
+    gap: 20px;
+    /* border: solid green; */
+}
+
+.comentario p {
+    font-size: 0.8rem;
+}
+
+.linea {
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
 
 /* ----CARRITO----- */
 .carrito-productos {

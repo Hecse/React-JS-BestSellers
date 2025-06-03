@@ -8,6 +8,7 @@ import Promociones from "./pages/Promociones";
 import Login from "./pages/Login";
 import Cart from "./components/Cart";
 import NotFound from "./pages/NotFound";
+import DetalleProducto from "./components/DetalleProducto";
 
 function App() {
   const [cart, setCart] = useState([]);
@@ -31,16 +32,16 @@ function App() {
     })
   }, []);
 
-  console.log(productos)
+  /* console.log(productos) */
 
   const ofertas = productos.filter((libros) => libros.categoria.includes("Oferta"));
-  console.log(ofertas)
+  /* console.log(ofertas) */
 
   const novedad = productos.filter((libros) => libros.categoria.includes("Novedad"));
-  console.log(novedad)
+  /* console.log(novedad) */
 
   const promociones = productos.filter((libros) => libros.categoria.includes("Promocion"));
-  console.log(promociones)
+  /* console.log(promociones) */
 
   return (
     <Router>
@@ -51,6 +52,7 @@ function App() {
         <Route path="/ofertas" element={<Ofertas productos={ofertas} cargando={cargando}/>} />
         <Route path="/promociones" element={<Promociones productos={promociones} cargando={cargando}/>} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/detalleProducto/:id" element={<DetalleProducto productos={productos}/>}/>
         <Route path="/login" element={<Login />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
