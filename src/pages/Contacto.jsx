@@ -1,9 +1,25 @@
 import React from "react";
 import Header from "../components/estaticos/Header";
 import Footer from "../components/estaticos/Footer";
+import { useState } from "react";
 import "./pages.css";
 
 const Contacto = () => {
+
+const [nombre, setNombre] = useState("");
+
+const [correo, setCorreo] = useState("");
+
+const [consulta, setConsulta] = useState("");
+
+function manejarEnvio(evento) {
+  evento.preventDefault();
+  alert(`Consulta enviada por: ${nombre}`);
+  setNombre("");
+  setCorreo("");
+  setConsulta("");
+}
+
   return (
     <>
       <Header />
@@ -16,11 +32,13 @@ const Contacto = () => {
               <p>Envienos su consulta y le responderemos a la brevedad</p>
             </div>
 
-            <form action="" method="post" className="formulario-contacto">
+            <form onSubmit={manejarEnvio} className="formulario-contacto">
               <div className="etiqueta-contacto">
                 <label for="nombre">Nombre</label>
                 <input
                   type="text"
+                  value={nombre}
+                  onChange={(e) => setNombre(e.target.value)}
                   name="nombre"
                   id="nombre"
                   placeholder="Su nombre"
@@ -32,6 +50,8 @@ const Contacto = () => {
                 <label for="correo">Correo electrónico</label>
                 <input
                   type="email"
+                  value={correo}
+                  onChange={(e) => setCorreo(e.target.value)}
                   name="correo"
                   id="correo"
                   placeholder="sucorreo@ejemplo.com"
@@ -42,6 +62,8 @@ const Contacto = () => {
                 <label for="consulta">Consulta</label>
                 <textarea
                   name="consulta"
+                  value={consulta}
+                  onChange={(e) => setConsulta(e.target.value)}
                   id="consulta"
                   placeholder="Su consulta"
                   cols="30"
@@ -52,7 +74,7 @@ const Contacto = () => {
               <button
                 type="submit"
                 value="enviar"
-                className="boton-contacto disabled"
+                className="boton-contacto"
               >
                 Enviar
               </button>
