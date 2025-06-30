@@ -4,18 +4,14 @@ import Footer from "../components/estaticos/Footer";
 import loading from "../assets/loading.gif";
 import ProductList from "../components/ProductList";
 
-const Novedades = ({ productos, cargando }) => {
+const Novedades = ({ productos, cargando, cartItems, handleAddToCart }) => {
   return (
     <>
-      <Header />
+      <Header cartItems={cartItems}/>
 
       <main>
-        <h3>Novedades</h3>
-        {cargando ? (
-          <img src={loading} />
-        ) : (
-          <ProductList productos={productos} />
-        )}
+        <h3>Libros en categoría: Novedades</h3>
+        {cargando ? (<img src={loading} />) : (<ProductList productos={productos} addToCart={handleAddToCart}/>)}
       </main>
 
       <Footer />

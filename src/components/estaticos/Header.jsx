@@ -1,16 +1,24 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import "./stylesEstatic.css";
 import logo from '/logo.png'
 
-const Header = () => {
+const Header = ({ cartItems }) => {
+
+  const totalItems = cartItems.reduce((acc, item) => acc + item.cantidad, 0);
+
+  // console.log(countItems);
+  // console.log(cartItems);   
+
   return (
     <>
       <header>
-        <div className="logo">
-            <a href="/"><img src={logo} alt="logo"/></a>
-            <a href="/"><h1>best<span>sellers</span></h1></a>
-        </div>
+        
+        <Link to="/">
+          <div className="logo">
+            <img src={logo} alt="logo"/>
+            <h1>best<span>sellers</span></h1>          
+          </div>
+        </Link>       
 
         <div className="buscador">
             <form action="">
@@ -22,13 +30,11 @@ const Header = () => {
         </div>
 
         <div className="carro">
-          <p>0</p>
-          
+          <p>{totalItems}</p>          
           <Link to="/Cart"><i className="fi fi-rr-shopping-cart"></i></Link>
         </div>
           
-        <div>
-          
+        <div>          
           <Link to="/Login"><i className="fi fi-rs-user"></i></Link>
         </div>
       </header>
@@ -41,14 +47,7 @@ const Header = () => {
           <li><Link to="/novedades" className="link">Novedades</Link></li>
           <li><Link to="/contacto" className="link">Contacto</Link></li>
         </ul>
-      </nav>
-
-      <div className="foto-libreria">
-        <div className="hero">
-            <p>"Vive como si fueras a morir mañana, aprende como si el mundo fuera a durar para siempre"
-            </p>
-        </div>
-    </div>
+      </nav>      
     </>
   );
 };

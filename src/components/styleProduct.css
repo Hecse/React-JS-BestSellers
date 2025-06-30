@@ -15,12 +15,22 @@ a {
     text-decoration: none;
 }
 
+main {
+    text-align: center;
+}
+
 .ofertas {
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
     flex-wrap: wrap;
     /* border: 2px solid black; */
+}
+
+.link {
+    text-decoration: none;
+    color: chocolate;
+    font-weight: 600;
 }
 
 .tarjeta {
@@ -202,28 +212,28 @@ a {
 
 /* ----CARRITO----- */
 .carrito-productos {
-    border: solid green;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* height: 70vh; */
-    margin: 10px;
+    margin: 10px auto;
+    width: 100%;
+    /* max-width: 1024px; */
+    /* border: solid red; */
 }
 
 .carrito-producto {
     display: grid;
     grid-template-columns: 0.3fr 1.1fr 0.4fr 0.5fr 0.5fr 0.2fr;
-    text-align: center;
     justify-items: center;
     align-items: center;
+    width: 100%;
     max-width: 1024px;
-    width: 80%;
-    /* border: 1px solid black; */
-    margin: 10px;
+    margin: 16px;
     padding: 15px;
-    gap: 6px;
-    box-shadow: 0.4rem 0.4rem 1.2rem rgb(48, 45, 45);
+    gap: 10px;
+    box-shadow: 0.3rem 0.3rem 1rem rgb(48, 45, 45);
+    /* border: 1px solid yellowgreen; */
 }
 
 .carrito-producto-imagen {
@@ -267,6 +277,15 @@ a {
     margin-left: 10px;
 }
 
+.carrito-producto-sumar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.carrito-producto-stock {
+    margin-top: 5px;
+}
+
 .carrito-producto-eliminar {
     border: 0;
     font-size: 1.2rem;
@@ -276,18 +295,19 @@ a {
 }
 
 .contenedor-carrito-productos-acciones {
-    /* border: solid green; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 10px;
+    /* border: solid green; */
 }
 
 .carrito-productos-acciones {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 80%;
+    width: 100%;
     max-width: 1024px;
     margin: 10px;
     /* border: 1px solid black; */
@@ -330,6 +350,3 @@ a {
     gap: 15px;
 }
 
-.carrito-vacio {
-    display: none;
-}

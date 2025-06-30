@@ -3,42 +3,69 @@ import { useParams } from "react-router-dom";
 import "./styleProduct.css";
 import Header from "../components/estaticos/Header";
 import Footer from "../components/estaticos/Footer";
+import { Link } from "react-router-dom";
 
-const DetalleProducto = ({ productos }) => {
+const DetalleProducto = ({ productos, cartItems, addToCart, handleAddToCart }) => {
   const { id } = useParams();
-  /* console.log (id) */
-
-  /* console.log(productos); */
+  // console.log (id);
+  // console.log(productos); 
 
   const producto = productos.find((producto) => producto.id === Number(id));
+  // console.log(producto);
+
+  if (!producto) {
+  return (
+    <>
+      <Header cartItems={cartItems} />
+      <main>
+        <h3>Producto no encontrado</h3>
+
+        <div>
+          <button className="boton-error"> <Link to="/">Volver al inicio</Link></button>
+        </div>
+      </main>
+      <Footer />
+    </>
+  );
+  }
 
   return (
     <>
-      <Header />
+      <Header cartItems={cartItems}/>
 
       <div className="detalle">
         <section className="producto">
           <div className="producto-tarjeta">
             <div className="producto-imagen">
+              
               <img src={producto.imagen} alt={producto.titulo} />
 
-              <button
-                data-id="${producto.id}"
-                className="producto-boton-carrito"
-              >
-                Agregar al carrito <i className="fi fi-rr-shopping-cart"></i>{" "}
+              <button className="producto-boton-carrito" onClick={()=>addToCart(producto)}>
+                Agregar al carrito <i className="fi fi-rr-shopping-cart"></i>
               </button>
             </div>
 
             <div className="producto-detalle">
-              <small>{producto.categoria}</small>
+              {/* <small>{producto.categoria}</small> */}
+              <div className="producto-categorias">
+                {producto.categoria.map((cat, index) => (
+                  <Link key={index} to={`/categoria/${cat}`} className="link-categoria" >
+                     {cat} <span>/ </span>
+                  </Link>
+                ))}
+              </div>
+              
               <div className="titulo">
                 <h3>{producto.titulo}</h3>
                 <h4>{producto.autor}</h4>
               </div>
 
               <div className="precio">
-                <h4>$ {new Intl.NumberFormat().format(producto.precio)},00</h4>
+                <h4>$ {new Intl.NumberFormat("es-AR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(producto.precio)}</h4>
+              </div>
+
+              <div className="stock">
+                <p>Stok: {producto.stock}</p>
               </div>
 
               <div className="medios-de-pago">

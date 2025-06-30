@@ -4,7 +4,7 @@ import Footer from "../components/estaticos/Footer";
 import { useState } from "react";
 import "./pages.css";
 
-const Contacto = () => {
+const Contacto = ({cartItems}) => {
 
 const [nombre, setNombre] = useState("");
 
@@ -22,7 +22,7 @@ function manejarEnvio(evento) {
 
   return (
     <>
-      <Header />
+      <Header cartItems={cartItems}/>
 
       <main>
         <div className="caja-contacto">
@@ -34,7 +34,7 @@ function manejarEnvio(evento) {
 
             <form onSubmit={manejarEnvio} className="formulario-contacto">
               <div className="etiqueta-contacto">
-                <label for="nombre">Nombre</label>
+                <label >Nombre</label>
                 <input
                   type="text"
                   value={nombre}
@@ -42,12 +42,12 @@ function manejarEnvio(evento) {
                   name="nombre"
                   id="nombre"
                   placeholder="Su nombre"
-                  maxlength="20"
+                  maxLength="20"
                 />
               </div>
 
               <div className="etiqueta-contacto">
-                <label for="correo">Correo electrónico</label>
+                <label >Correo electrónico</label>
                 <input
                   type="email"
                   value={correo}
@@ -59,7 +59,7 @@ function manejarEnvio(evento) {
               </div>
 
               <div className="etiqueta-contacto">
-                <label for="consulta">Consulta</label>
+                <label >Consulta</label>
                 <textarea
                   name="consulta"
                   value={consulta}
