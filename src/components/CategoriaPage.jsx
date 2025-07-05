@@ -3,8 +3,13 @@ import "./styleProduct.css";
 import Header from "../components/estaticos/Header";
 import Footer from "../components/estaticos/Footer";
 import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
+import { useContext } from "react";
 
-const CategoriaPage = ({ productos, cargando, handleAddToCart, cartItems }) => {
+const CategoriaPage = () => {
+
+  const {productos, cargando, handleAddToCart, cartItems} = useContext(CartContext)
+  
   const { nombre } = useParams();
 
   const productosFiltrados = productos.filter((prod) =>

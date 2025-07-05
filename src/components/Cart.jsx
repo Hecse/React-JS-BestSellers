@@ -2,8 +2,12 @@ import "./styleProduct.css";
 import Header from "./estaticos/Header";
 import Footer from "./estaticos/Footer";
 import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
+import { useContext } from "react";
 
-const Cart = ({ cartItems, handleIncrease, handleDecrease, handleRemoveItem, handleDeleteCart, handleBuy, compraFinalizada}) => {
+const Cart = () => {
+
+  const {cartItems, handleIncrease, handleDecrease, handleRemoveItem, handleDeleteCart, handleBuy, compraFinalizada} = useContext(CartContext)
 
   // console.log(cartItems);
 
@@ -37,9 +41,9 @@ const Cart = ({ cartItems, handleIncrease, handleDecrease, handleRemoveItem, han
                 <small>Cantidad</small>
     
                 <div className="carrito-producto-cantidad">
-                  <button className="carrito-producto-restar" onClick={() => handleDecrease(item.id)}><p> - </p></button>
+                  <button className="carrito-producto-restar" onClick={() => handleDecrease(item.id)} disabled={item.cantidad <= 1}> - </button>
                   <h4 className="cantidad"> {item.cantidad} </h4>
-                  <button className="carrito-producto-sumar" onClick={() => handleIncrease(item.id)} disabled={item.cantidad >= item.stock}><p> + </p></button>
+                  <button className="carrito-producto-sumar" onClick={() => handleIncrease(item.id)} disabled={item.cantidad >= item.stock}> + </button>
                 </div>
                
                 <div className="carrito-producto-stock">
@@ -67,7 +71,7 @@ const Cart = ({ cartItems, handleIncrease, handleDecrease, handleRemoveItem, han
         </div>
 
         <div className="contenedor-carrito-productos-acciones">
-          {!compraFinalizada && (
+          {!compraFinalizada && cartItems.length !== 0  && (
           <div className="carrito-productos-acciones">
             <div>
               <button className="boton-vaciar-carrito" onClick={handleDeleteCart}>Vaciar carrito <i className="fi fi-rr-trash"></i></button>

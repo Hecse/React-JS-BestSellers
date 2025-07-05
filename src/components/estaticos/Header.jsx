@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import "./stylesEstatic.css";
 import logo from '/logo.png'
+import { CartContext } from "../../context/CartContext";
+import { useContext } from "react";
 
-const Header = ({ cartItems }) => {
+const Header = () => {
+
+  const {cartItems} = useContext(CartContext)  
 
   const totalItems = cartItems.reduce((acc, item) => acc + item.cantidad, 0);
 

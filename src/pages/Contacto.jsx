@@ -1,4 +1,3 @@
-import React from "react";
 import Header from "../components/estaticos/Header";
 import Footer from "../components/estaticos/Footer";
 import { useState } from "react";
@@ -6,19 +5,19 @@ import "./pages.css";
 
 const Contacto = ({cartItems}) => {
 
-const [nombre, setNombre] = useState("");
+  const [nombre, setNombre] = useState("");
 
-const [correo, setCorreo] = useState("");
+  const [correo, setCorreo] = useState("");
 
-const [consulta, setConsulta] = useState("");
+  const [consulta, setConsulta] = useState("");
 
-function manejarEnvio(evento) {
+  function manejarEnvio(evento) {
   evento.preventDefault();
   alert(`Consulta enviada por: ${nombre}`);
   setNombre("");
   setCorreo("");
   setConsulta("");
-}
+  }
 
   return (
     <>
@@ -74,9 +73,8 @@ function manejarEnvio(evento) {
               <button
                 type="submit"
                 value="enviar"
-                className="boton-contacto"
-              >
-                Enviar
+                className="boton-contacto">
+                Enviar <i className="fi fi-rr-envelope"></i>
               </button>
             </form>
           </div>

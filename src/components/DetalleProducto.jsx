@@ -4,8 +4,13 @@ import "./styleProduct.css";
 import Header from "../components/estaticos/Header";
 import Footer from "../components/estaticos/Footer";
 import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
+import { useContext } from "react";
 
-const DetalleProducto = ({ productos, cartItems, addToCart, handleAddToCart }) => {
+const DetalleProducto = ({productos, cartItems, addToCart}) => {
+
+  /* const {productos, cartItems, addToCart} = useContext(CartContext) */
+  
   const { id } = useParams();
   // console.log (id);
   // console.log(productos); 

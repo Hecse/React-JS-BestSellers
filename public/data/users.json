@@ -1,0 +1,22 @@
+[
+  {
+    "mail": "prueba@mail.com",
+    "pass": "123456",
+    "rol": "admin"
+  },
+  {
+    "mail": "prueba1@mail.com",
+    "pass": "123456",
+    "rol": "admin"
+  },
+  {
+    "mail": "user@mail.com",
+    "pass": "123456",
+    "rol": "user"
+  },  
+  {
+    "mail": "user1@mail.com",
+    "pass": "123456",
+    "rol": "user"
+  }  
+]

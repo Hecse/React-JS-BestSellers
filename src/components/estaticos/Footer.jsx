@@ -1,4 +1,3 @@
-import React from "react";
 import './stylesEstatic.css'
 
 const footer = () => {

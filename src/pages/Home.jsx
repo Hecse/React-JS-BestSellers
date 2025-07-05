@@ -4,10 +4,14 @@ import Footer from "../components/estaticos/Footer";
 import loading from "../assets/loading.gif";
 import ProductList from "../components/ProductList";
 import Hero from "../components/estaticos/Hero";
+import { CartContext } from "../context/CartContext";
+import { useContext } from "react";
 
-const Home = ({cargando, productos, handleAddToCart, cartItems}) => {
+const Home = () => {
+  
+  const {cargando, productos, handleAddToCart, cartItems} = useContext(CartContext)
   // console.log(productos);
-  // console.log(cartItems);  
+  // console.log(cartItems);
 
   return (
     <>

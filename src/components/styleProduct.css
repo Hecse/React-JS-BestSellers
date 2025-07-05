@@ -264,6 +264,11 @@ main {
     margin-right: 10px;
 }
 
+.carrito-producto-restar:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .carrito-producto-sumar {
     border: 0;
     font-size: 1.2rem;
