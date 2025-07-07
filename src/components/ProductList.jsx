@@ -3,9 +3,9 @@ import "./styleProduct.css";
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 
-const ProductList = () => {
+const ProductList = ({productos}) => {
 
-  const {productos} = useContext(CartContext)
+  const {} = useContext(CartContext)
 
   return (
     <>

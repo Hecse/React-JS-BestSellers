@@ -9,7 +9,7 @@ import { useContext } from "react";
 
 const Home = () => {
   
-  const {cargando} = useContext(CartContext)
+  const {cargando, productos} = useContext(CartContext)
   // console.log(productos);
   // console.log(cartItems);
 
@@ -19,7 +19,7 @@ const Home = () => {
       <Hero/>
       <main>
         <h3>Lista de productos</h3>
-        {cargando ? (<img src={loading} />) : (<ProductList />)}
+        {cargando ? (<img src={loading} />) : (<ProductList productos={productos}/>)}
       </main>      
       <Footer/>
     </>
