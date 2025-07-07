@@ -9,20 +9,18 @@ import { useContext } from "react";
 
 const Home = () => {
   
-  const {cargando, productos, handleAddToCart, cartItems} = useContext(CartContext)
+  const {cargando} = useContext(CartContext)
   // console.log(productos);
   // console.log(cartItems);
 
   return (
     <>
-      <Header cartItems={cartItems}/>
+      <Header/>
       <Hero/>
-
       <main>
         <h3>Lista de productos</h3>
-        {cargando ? (<img src={loading} />) : (<ProductList productos={productos} addToCart={handleAddToCart}/>)}
-      </main>
-      
+        {cargando ? (<img src={loading} />) : (<ProductList />)}
+      </main>      
       <Footer/>
     </>
   );

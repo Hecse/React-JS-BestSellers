@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
 
-const DetalleProducto = ({productos, cartItems, addToCart}) => {
+const DetalleProducto = () => {
 
-  /* const {productos, cartItems, addToCart} = useContext(CartContext) */
+  const {productos, handleAddToCart} = useContext(CartContext)
   
   const { id } = useParams();
   // console.log (id);
@@ -21,7 +21,7 @@ const DetalleProducto = ({productos, cartItems, addToCart}) => {
   if (!producto) {
   return (
     <>
-      <Header cartItems={cartItems} />
+      <Header />
       <main>
         <h3>Producto no encontrado</h3>
 
@@ -36,7 +36,7 @@ const DetalleProducto = ({productos, cartItems, addToCart}) => {
 
   return (
     <>
-      <Header cartItems={cartItems}/>
+      <Header />
 
       <div className="detalle">
         <section className="producto">
@@ -45,7 +45,7 @@ const DetalleProducto = ({productos, cartItems, addToCart}) => {
               
               <img src={producto.imagen} alt={producto.titulo} />
 
-              <button className="producto-boton-carrito" onClick={()=>addToCart(producto)}>
+              <button className="producto-boton-carrito" onClick={()=>handleAddToCart(producto)}>
                 Agregar al carrito <i className="fi fi-rr-shopping-cart"></i>
               </button>
             </div>

@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import { CartContext } from '../context/CartContext';
 import { useContext } from 'react';
 
-const Productos = ({producto, addToCart}) => {
+const Productos = ({producto}) => {
+
+    const {handleAddToCart} = useContext(CartContext)
     
   return (
     <>
@@ -20,7 +22,7 @@ const Productos = ({producto, addToCart}) => {
                     </div>
                 </Link>                
 
-                <button className="tarjeta-boton" onClick={()=>addToCart(producto)}>Agregar al carrito <i className="fi fi-rr-shopping-cart"></i> </button>
+                <button className="tarjeta-boton" onClick={()=>handleAddToCart(producto)}>Agregar al carrito <i className="fi fi-rr-shopping-cart"></i> </button>
             </div>
         </section>
     </>

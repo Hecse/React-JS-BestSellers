@@ -69,7 +69,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // comprar productos
+  // comprar productos del carrito
   const handleBuy = () => {
     alert("¡Gracias por su compra! 🎉");
     setCart([]);
@@ -125,8 +125,7 @@ export const CartProvider = ({ children }) => {
         handleDeleteCart,
         handleBuy,
         compraFinalizada,
-        isAutenticated
-        
+        isAutenticated        
       }}
     >
       {children}
