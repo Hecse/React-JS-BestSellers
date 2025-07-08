@@ -21,16 +21,20 @@ a:hover {
 
 main {
     text-align: center;
+    /* border: solid green; */
 }
 
 
-/* ---CONTACTO--- */
+/* ---CONTACTO/LOGIN--- */
 .caja-contacto,
 .caja-login {
     display: flex;
     justify-content: center;
+    align-items: center;
     max-width: 450px;
+    height: 100%;
     margin: 10px auto;
+    text-align: center;
     /* border: solid black; */
 }
 
@@ -116,6 +120,12 @@ textarea {
 .input-password-container input {
   width: 100%;
   padding-right: 35px; /* espacio para el icono */
+}
+
+.error-login p {
+    font-size: 0.8em;
+    color: red;
+    margin-top: 3px;
 }
 
 .btn-ojo {

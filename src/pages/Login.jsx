@@ -1,82 +1,117 @@
-import Header from "../components/estaticos/Header";
-import Footer from "../components/estaticos/Footer";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./pages.css";
 import { CartContext } from "../context/CartContext";
-import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-
-  const {cartItems} = useContext(CartContext)
-
+  const {setIsAutenticated} = useContext(CartContext);
   const [pass, setPass] = useState("");
-  const [correo, setCorreo] = useState("");
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState({});
+  const navigate = useNavigate();
   const [showPass, setShowPass] = useState(false);
 
-  function userLog(evento) {
-  evento.preventDefault();
-  setPass("");
-  setCorreo("");
-  }
-  
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let validateErrors = {};
+    if (!email) validateErrors.email = "Email requerido";
+    if (!pass) validateErrors.pass = "Contraseña requerida";
+    if (Object.keys(validateErrors).length > 0) {
+      setError(validateErrors);
+      return;
+    }
+
+    try {
+      const res = await fetch("data/users.json");
+      const users = await res.json();
+
+      /* console.log(users); */
+      
+      const foundUser = users.find((user) => user.email === email && user.pass === pass);
+
+      if (!foundUser) {
+        setError({ email: "credenciales invalidas" });
+      } else {
+        if (foundUser.rol === "admin") {
+          setIsAutenticated(true);
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
+      }
+    } catch (err) {
+      console.error('Error fetching users:', err);
+      setError({email: 'Algo salió mal. Por favor intentelo nuevamente'})
+    }
+  };
+
   return (
-    <>
-      <Header cartItems={cartItems}/>
+    <div className="caja-login">
+      <div className="login">
+        <div className="encabezado-login">
+          <h3>Iniciar sesión</h3>
+          <p>Por favor ingrese los siguientes datos</p>
+        </div>
 
-      <main>
-        <div className="caja-login">
-          <div className="login">
-            <div className="encabezado-login">
-              <h3>Iniciar sesión</h3>
-              <p>Por favor ingrese los siguientes datos</p>
-            </div>
+        <form onSubmit={handleSubmit} className="formulario-login">
+          <div className="etiqueta-login">
+            <label>Correo electrónico</label>
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              id="email"
+              placeholder="sucorreo@ejemplo.com"
+            />
 
-            <form onSubmit={userLog} className="formulario-login">
-              <div className="etiqueta-login">
-                <label>Correo electrónico</label>
-                <input
-                  type="email"
-                  value={correo}
-                  onChange={(e) => setCorreo(e.target.value)}
-                  name="correo"
-                  id="correo"
-                  placeholder="sucorreo@ejemplo.com"
-                />
-              </div> 
-              
-              <div className="etiqueta-login">
-                <label>Contraseña</label>
-                <div className="input-password-container">
-                  <input
-                    type={showPass ? "text" : "password"}
-                    value={pass}
-                    onChange={(e) => setPass(e.target.value)}
-                    name="pass"
-                    id="pass"
-                    placeholder="Su Contraseña"
-                    maxLength="20"
-                  />
-
-                  <button type="button" onClick={() => setShowPass(!showPass)} className="btn-ojo">
-                    {showPass ? <i className="fi fi-rr-eye-crossed"></i> : <i className="fi fi-rs-eye"></i>}
-                  </button>
-                </div>
+            {error.email && (
+              <div className="error-login">
+                <p>{error.email}</p>
               </div>
+            )}
+          </div>
+
+          <div className="etiqueta-login">
+            <label>Contraseña</label>
+            <div className="input-password-container">
+              <input
+                type={showPass ? "text" : "password"}
+                value={pass}
+                onChange={(e) => setPass(e.target.value)}
+                name="pass"
+                id="pass"
+                placeholder="Su Contraseña"
+                maxLength="20"
+              />
+
+              {error.pass && (
+                <div className="error-login">
+                  <p>{error.pass}</p>
+                </div>
+              )}
 
               <button
-                type="submit"
-                value="enviar"
-                className="boton-login">
-                Iniciar sesión 
+                type="button"
+                onClick={() => setShowPass(!showPass)}
+                className="btn-ojo"
+              >
+                {showPass ? (
+                  <i className="fi fi-rr-eye-crossed"></i>
+                ) : (
+                  <i className="fi fi-rs-eye"></i>
+                )}
               </button>
-            </form>
+            </div>
           </div>
-        </div>
-      </main>
 
-      <Footer/>
-    </>    
-  )
-}
+          <button type="submit" value="enviar" className="boton-login">
+            Iniciar sesión
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+};
 
-export default Login
+export default Login;

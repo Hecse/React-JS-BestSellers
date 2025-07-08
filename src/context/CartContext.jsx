@@ -125,7 +125,8 @@ export const CartProvider = ({ children }) => {
         handleDeleteCart,
         handleBuy,
         compraFinalizada,
-        isAutenticated        
+        isAutenticated,
+        setIsAutenticated
       }}
     >
       {children}

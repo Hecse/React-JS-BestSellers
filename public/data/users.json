@@ -1,21 +1,25 @@
 [
   {
-    "mail": "prueba@mail.com",
+    "nombre": "Admin",
+    "email": "prueba@mail.com",
     "pass": "123456",
     "rol": "admin"
   },
   {
-    "mail": "prueba1@mail.com",
+    "nombre": "Admin2",
+    "email": "prueba1@mail.com",
     "pass": "123456",
     "rol": "admin"
   },
   {
-    "mail": "user@mail.com",
+    "nombre": "User",
+    "email": "user@mail.com",
     "pass": "123456",
     "rol": "user"
   },  
   {
-    "mail": "user1@mail.com",
+    "nombre": "User2",
+    "email": "user1@mail.com",
     "pass": "123456",
     "rol": "user"
   }  

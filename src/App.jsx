@@ -9,10 +9,14 @@ import Cart from "./components/Cart";
 import NotFound from "./pages/NotFound";
 import DetalleProducto from "./components/DetalleProducto";
 import CategoriaPage from "./components/CategoriaPage";
-import RutasProtegidas from "./auth/RutasProtegidas";
+import RutasProtegidas from "./rutas/RutasProtegidas";
 import AdminPanel from "./pages/AdminPanel";
+import { useContext } from "react";
+import { CartContext } from "./context/CartContext";
 
 function App() {  
+
+  const {isAutenticated} = useContext(CartContext)
 
   return (
     <Router>
@@ -26,7 +30,7 @@ function App() {
         <Route path="/detalleProducto/:id" element={<DetalleProducto />} />
         <Route path="/categoria/:nombre" element={<CategoriaPage />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={<RutasProtegidas> <AdminPanel /> </RutasProtegidas>} />
+        <Route path="/admin" element={<RutasProtegidas isAutenticated={isAutenticated}>  <AdminPanel /> </RutasProtegidas>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
