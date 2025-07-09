@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Contacto from "./pages/Contacto";
 import Novedades from "./pages/Novedades";
@@ -18,22 +18,20 @@ function App() {
 
   const {isAutenticated} = useContext(CartContext)
 
-  return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contacto" element={<Contacto />} />
-        <Route path="/novedades" element={<Novedades />} />
-        <Route path="/ofertas" element={<Ofertas />} />
-        <Route path="/promociones" element={<Promociones />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/detalleProducto/:id" element={<DetalleProducto />} />
-        <Route path="/categoria/:nombre" element={<CategoriaPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/admin" element={<RutasProtegidas isAutenticated={isAutenticated}>  <AdminPanel /> </RutasProtegidas>} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
+  return (    
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/contacto" element={<Contacto />} />
+      <Route path="/novedades" element={<Novedades />} />
+      <Route path="/ofertas" element={<Ofertas />} />
+      <Route path="/promociones" element={<Promociones />} />
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/detalleProducto/:id" element={<DetalleProducto />} />
+      <Route path="/categoria/:nombre" element={<CategoriaPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/admin" element={<RutasProtegidas isAutenticated={isAutenticated}> <AdminPanel /> </RutasProtegidas>} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>    
   );
 }
 

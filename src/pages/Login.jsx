@@ -1,49 +1,18 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import "./pages.css";
-import { CartContext } from "../context/CartContext";
-import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
-  const {setIsAutenticated} = useContext(CartContext);
-  const [pass, setPass] = useState("");
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState({});
-  const navigate = useNavigate();
-  const [showPass, setShowPass] = useState(false);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    let validateErrors = {};
-    if (!email) validateErrors.email = "Email requerido";
-    if (!pass) validateErrors.pass = "Contraseña requerida";
-    if (Object.keys(validateErrors).length > 0) {
-      setError(validateErrors);
-      return;
-    }
-
-    try {
-      const res = await fetch("data/users.json");
-      const users = await res.json();
-
-      /* console.log(users); */
-      
-      const foundUser = users.find((user) => user.email === email && user.pass === pass);
-
-      if (!foundUser) {
-        setError({ email: "credenciales invalidas" });
-      } else {
-        if (foundUser.rol === "admin") {
-          setIsAutenticated(true);
-          navigate("/admin");
-        } else {
-          navigate("/");
-        }
-      }
-    } catch (err) {
-      console.error('Error fetching users:', err);
-      setError({email: 'Algo salió mal. Por favor intentelo nuevamente'})
-    }
-  };
+  const {
+    pass,
+    setPass,
+    email,
+    setEmail,
+    error,    
+    showPass,
+    setShowPass,
+    handleSubmit,
+  } = useContext(AuthContext);
 
   return (
     <div className="caja-login">
