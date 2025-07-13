@@ -67,7 +67,7 @@ const Cart = () => {
               </button>            
             </div>
             ))}
-          </>)}        
+          </>)}
         </div>
 
         <div className="contenedor-carrito-productos-acciones">

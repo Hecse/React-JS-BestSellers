@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./stylesEstatic.css";
-import logo from '/logo.png'
+import logo from '/logo.png';
 import { CartContext } from "../../context/CartContext";
 import { useContext } from "react";
 
@@ -15,8 +15,7 @@ const Header = () => {
 
   return (
     <>
-      <header>
-        
+      <header>        
         <Link to="/">
           <div className="logo">
             <img src={logo} alt="logo"/>

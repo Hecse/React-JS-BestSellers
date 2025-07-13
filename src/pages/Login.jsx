@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import "./pages.css";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
@@ -8,7 +9,7 @@ const Login = () => {
     setPass,
     email,
     setEmail,
-    error,    
+    error,
     showPass,
     setShowPass,
     handleSubmit,
@@ -74,10 +75,16 @@ const Login = () => {
             </div>
           </div>
 
-          <button type="submit" value="enviar" className="boton-login">
-            Iniciar sesión
-          </button>
+          <div>
+            <button type="submit" value="enviar" className="boton-login">
+              Iniciar sesión
+            </button>
+          </div>
         </form>
+
+        <Link to="/" className="boton-volver-login">
+          Volver al inicio
+        </Link>
       </div>
     </div>
   );

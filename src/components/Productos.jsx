@@ -1,15 +1,14 @@
 import './styleProduct.css'
 import { Link } from "react-router-dom";
-import { CartContext } from '../context/CartContext';
 import { useContext } from 'react';
+import { CartContext } from '../context/CartContext';
 
 const Productos = ({producto}) => {
 
-    const {handleAddToCart} = useContext(CartContext)
+  const {handleAddToCart} = useContext(CartContext)
     
   return (
-    <>
-    
+    <>    
         <section className="ofertas">
             <div className="tarjeta">
 

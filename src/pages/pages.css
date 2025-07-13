@@ -139,6 +139,20 @@ textarea {
   font-size: 1.2rem;
 }
 
+.boton-volver-login {
+    border: 0;
+    background-color: #db6e01;
+    color: #ECDFCC;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    border: 2px solid #db6e01;
+    letter-spacing: 1px;
+    transition: 0.4s;
+    margin-top: 25px;
+    /* border: solid black; */
+}
+
 
 /* NotFound */
 .error {

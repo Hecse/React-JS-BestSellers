@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
       );
 
       if (!foundUser) {
-        setError({ email: "credenciales invalidas" });
+        setError({ email: "credenciales invalidas" });        
       } else {
         if (foundUser.rol === "admin") {
           setIsAutenticated(true);
