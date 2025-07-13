@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 const AdminTable = ({ productos }) => {
-  console.log(productos);
-
+  // console.log(productos);
+  
   return (
     <table>
       <thead>

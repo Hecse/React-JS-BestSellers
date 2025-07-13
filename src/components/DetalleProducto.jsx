@@ -14,8 +14,9 @@ const DetalleProducto = () => {
   // console.log (id);
   // console.log(productos); 
 
-  const producto = productos.find((producto) => producto.id === Number(id));
+  const producto = productos.find((producto) => producto.id == Number(id));
   // console.log(producto);
+  // ${new Intl.NumberFormat().format(producto.id)}
 
   if (!producto) {
   return (

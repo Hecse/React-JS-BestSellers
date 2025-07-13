@@ -5,12 +5,12 @@ import { CartContext } from '../context/CartContext';
 
 const Productos = ({producto}) => {
 
-  const {handleAddToCart} = useContext(CartContext)
+  const {handleAddToCart} = useContext(CartContext)  
     
   return (
     <>    
         <section className="ofertas">
-            <div className="tarjeta">
+            <div className="tarjeta">  
 
                 <Link to={`/detalleProducto/${producto.id}`}>
                     <img src={producto.imagen} alt={producto.titulo} />

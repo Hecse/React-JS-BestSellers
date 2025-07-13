@@ -91,13 +91,13 @@ h2 span {
   max-width: 1024px;
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  margin-top: 15px;
 }
 
 .admin-agregar {
   display: flex;
   justify-content: space-between;
-  height: 50px;
+  /* height: 50px; */
   padding: 10px;
   box-shadow: 0.3rem 0.3rem 1rem rgb(48, 45, 45);
 }
@@ -124,6 +124,49 @@ h2 span {
   color: red;
 }
 
+.admin-agregar-form {
+  padding: 25px;
+  box-shadow: 0.3rem 0.3rem 1rem rgb(48, 45, 45);
+}
+
+.admin-agregar-contenedor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* max-width: 650px; */
+  height: 100%;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.etiqueta-agregar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  font-size: .8em;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.etiqueta-agregar label {
+  margin-bottom: 4px;
+  font-weight: 600;
+  color: rgb(53, 52, 52);
+}
+
+.etiqueta-agregar input {
+  padding: 10px;
+    border-radius: 0px;
+    border: 1px solid brown;
+}
+
+.error-agregar p {
+    font-size: 0.8em;
+    color: red;
+    margin-top: 3px;
+}
+
+/* Tabla */
 .admin-tabla {
   display: flex;
   flex-direction: column;

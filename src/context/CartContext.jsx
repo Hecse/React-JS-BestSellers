@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect } from "react";
+import NotFound from "../pages/NotFound";
 
 export const CartContext = createContext();
 
@@ -76,9 +77,9 @@ export const CartProvider = ({ children }) => {
     setCompraFinalizada(true);
   };
 
-  // trae los productos del JSON
+  // trae los productos del JSON ("/data/productos.json") o https://6873ad94c75558e27354e78e.mockapi.io/proyecto-ecommerce/articles
   useEffect(() => {
-    fetch("/data/productos.json")
+    fetch("https://6873ad94c75558e27354e78e.mockapi.io/proyecto-ecommerce/articles")
       .then((respuesta) => respuesta.json())
       .then((datos) => {
         setTimeout(() => {
@@ -92,6 +93,10 @@ export const CartProvider = ({ children }) => {
         setError(true);
       });
   }, []);
+
+  if (error){
+    return <NotFound/>
+  }
 
   // filtro de productos
   const ofertas = productos.filter((libros) =>
