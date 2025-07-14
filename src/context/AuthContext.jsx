@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
   const {setIsAutenticated} = useContext(CartContext);
   const [showPass, setShowPass] = useState(false);
 
+  //guarda en el localStorage si el usuario está logueado
   useEffect(() => {
     const isAutenticated = localStorage.getItem("isAuth") === "true";
     if (isAutenticated) {
@@ -34,7 +35,6 @@ export const AuthProvider = ({ children }) => {
     try {
       const res = await fetch("data/users.json");
       const users = await res.json();
-
       /* console.log(users); */
 
       const foundUser = users.find(
@@ -46,6 +46,7 @@ export const AuthProvider = ({ children }) => {
       } else {
         if (foundUser.rol === "admin") {
           setIsAutenticated(true);
+          localStorage.setItem('isAuth', true)
           navigate("/admin");
         } else {
           navigate("/");

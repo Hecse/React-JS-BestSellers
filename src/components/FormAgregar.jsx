@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-const FormAgregar = ({ onAgregar }) => {
+const FormAgregar = ({ onAgregar, setOpenAgregar }) => {
   const [producto, setProducto] = useState({
     titulo: "",
     autor: "",
@@ -18,15 +18,79 @@ const FormAgregar = ({ onAgregar }) => {
     setProducto({ ...producto, [name]: value });
   };
 
+  const validarFormAgregar = () => {
+    const erroresFormAgregar = {};
+    if (!producto.titulo.trim()) {
+      erroresFormAgregar.titulo = "El título es obligatorio";
+    }
+    if (!producto.autor.trim()) {
+      erroresFormAgregar.autor = "El autor es obligatorio";
+    }
+    if (!producto.precio || producto.precio <= 0) {
+      erroresFormAgregar.precio = "El precio debe ser mayor a 0";
+    }
+    if (!producto.descripcion.trim()) {
+      erroresFormAgregar.descripcion = "La descripcion es obligatoria";
+    }
+    if (!producto.categoria || producto.categoria.length < 1) {
+      erroresFormAgregar.categoria = "Debe seleccionar al menos una categoria";
+    }
+    if (!producto.imagen.trim()) {
+      erroresFormAgregar.imagen = "La imagen es obligatoria";
+    }
+    if (!producto.stock.trim()) {
+      erroresFormAgregar.stock = "El stock es obligatorio";
+    }
+    setErrors(erroresFormAgregar);
+    return Object.keys(erroresFormAgregar).length === 0;
+  };
+
+  const categoriasDisponibles = [
+    "Americano",
+    "Aventura",
+    "Ciencia Ficcion",
+    "Comic",
+    "Contemporanea",
+    "Ilustrado",
+    "Independiente",
+    "Infantil",
+    "Juvenil",
+    "Manga",
+    "Misterio",
+    "Novedad",
+    "Novela",
+    "Oferta",
+    "Promocion",
+    "Shonen",
+  ];
+
+  const handleCheckboxChange = (e) => {
+    const { value, checked } = e.target;
+    if (checked) {
+      // agrega la categoría
+      setProducto({ ...producto, categoria: [...producto.categoria, value] });
+    } else {
+      // saca la categoría
+      setProducto({
+        ...producto,
+        categoria: producto.categoria.filter((cat) => cat !== value),
+      });
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validarFormAgregar()) {
+        return;
+    }
     onAgregar(producto);
+
     setProducto({
       titulo: "",
       autor: "",
       precio: "",
       descripcion: "",
-      categoria: [],
+      categoria: "",
       imagen: "",
       stock: "",
     });
@@ -40,7 +104,7 @@ const FormAgregar = ({ onAgregar }) => {
           type="text"
           value={producto.titulo}
           onChange={handleChange}
-          required
+          // required
           name="titulo"
           placeholder="Titulo"
           maxLength="60"
@@ -59,7 +123,7 @@ const FormAgregar = ({ onAgregar }) => {
           type="text"
           value={producto.autor}
           onChange={handleChange}
-          required
+          // required
           name="autor"
           placeholder="Autor"
         />
@@ -77,7 +141,7 @@ const FormAgregar = ({ onAgregar }) => {
           type="number"
           value={producto.precio}
           onChange={handleChange}
-          required
+          // required
           name="precio"
           placeholder="Precio"
         />
@@ -94,7 +158,7 @@ const FormAgregar = ({ onAgregar }) => {
         <textarea
           value={producto.descripcion}
           onChange={handleChange}
-          required
+          // required
           name="descripcion"
           placeholder="Descripcion"
           cols="60"
@@ -110,14 +174,19 @@ const FormAgregar = ({ onAgregar }) => {
 
       <div className="etiqueta-agregar">
         <label>Categoria:</label>
-        <input
-          type="text"
-          value={producto.categoria}
-          onChange={handleChange}
-          required
-          name="categoria"
-          placeholder="Categoria"
-        />
+        <div className="etiqueta-agregar-check">
+          {categoriasDisponibles.map((cat) => (
+            <label key={cat}>
+              <input
+                type="checkbox"
+                value={cat}
+                checked={producto.categoria.includes(cat)}
+                onChange={handleCheckboxChange}
+              />
+              {cat}
+            </label>
+          ))}
+        </div>
 
         {errors.categoria && (
           <div className="error-agregar">
@@ -132,7 +201,7 @@ const FormAgregar = ({ onAgregar }) => {
           type="text"
           value={producto.imagen}
           onChange={handleChange}
-          required
+          //required
           name="imagen"
           placeholder="Link de la imagen"
         />
@@ -150,7 +219,7 @@ const FormAgregar = ({ onAgregar }) => {
           type="number"
           value={producto.stock}
           onChange={handleChange}
-          required
+          //required
           name="stock"
           placeholder="Stock"
         />
@@ -165,6 +234,8 @@ const FormAgregar = ({ onAgregar }) => {
       <button type="submit" value="enviar" className="">
         Agregar producto
       </button>
+
+      <button onClick={() => setOpenAgregar(false)}>Cancelar</button>
     </form>
   );
 };

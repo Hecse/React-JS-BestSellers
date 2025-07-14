@@ -1,14 +1,31 @@
 import "./adminPanel.css";
 import logo from "/logo.png";
 import { Link } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
 import AdminTable from "../components/AdminTable";
-import FormularioAgregar from "../components/FormAgregar";
+import FormAgregar from "../components/FormAgregar";
 
 const AdminPanel = () => {
-  const { productos } = useContext(CartContext);
+  const { productos, setProductos } = useContext(CartContext);
   const [openAgregar, setOpenAgregar] = useState(false);
+
+  const cargarProductos = async () => {
+    try {
+      const res = await fetch(
+        "https://6873ad94c75558e27354e78e.mockapi.io/proyecto-ecommerce/articles"
+      );
+      if (!res.ok) throw new Error("Error al obtener productos");
+      const data = await res.json();
+      setProductos(data);
+    } catch (error) {
+      console.log("Error al cargar los productos", error);
+    }
+  };
+
+  useEffect(() => {
+    cargarProductos();
+  }, []);
 
   const agregarProducto = async (producto) => {
     try {
@@ -25,8 +42,28 @@ const AdminPanel = () => {
       }
       const data = await respuesta.json();
       alert("Producto agregado correctamente");
+      cargarProductos();
     } catch (error) {
       console.log(error.message);
+    }
+  };
+
+  const eliminarProducto = async (id) => {
+    const confirmar = window.confirm("Está seguro de eliminar el producto?");
+    if (confirmar) {
+      try {
+        const respuesta = await fetch(
+          `https://6873ad94c75558e27354e78e.mockapi.io/proyecto-ecommerce/articles/${id}`, //lleva comillas invertidas
+          {
+            method: "DELETE",
+          }
+        );
+        if (!respuesta.ok) throw Error("Error al eliminar");
+        alert("Producto eliminado correctamente");
+        cargarProductos();
+      } catch (error) {
+        alert("Hubo un problema al eliminar el producto");
+      }
     }
   };
 
@@ -70,13 +107,12 @@ const AdminPanel = () => {
 
       <section className="admin-agregar-form">
         <div className="admin-agregar-contenedor">
-          {openAgregar && (<FormularioAgregar onAgregar={agregarProducto}/>)}
+          {openAgregar && <FormAgregar onAgregar={agregarProducto} setOpenAgregar={setOpenAgregar}/>}        
         </div>
-        <button onClick={() => setOpenAgregar(false)}>Cancelar</button>
       </section>
 
       <section className="admin-tabla">
-        <AdminTable productos={productos} />
+        <AdminTable productos={productos} eliminarProducto={eliminarProducto}/>
       </section>
     </div>
   );

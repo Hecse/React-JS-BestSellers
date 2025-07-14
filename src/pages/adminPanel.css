@@ -160,6 +160,12 @@ h2 span {
     border: 1px solid brown;
 }
 
+.etiqueta-agregar-check {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .error-agregar p {
     font-size: 0.8em;
     color: red;

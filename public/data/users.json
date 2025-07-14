@@ -1,26 +1,30 @@
 [
   {
-    "nombre": "Admin",
+    "nombre": "Carlos",
     "email": "prueba@mail.com",
     "pass": "123456",
+    "imagen": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/512/54.jpg",
     "rol": "admin"
   },
   {
-    "nombre": "Admin2",
+    "nombre": "Juan",
     "email": "prueba1@mail.com",
     "pass": "123456",
+    "imagen": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/512/97.jpg",
     "rol": "admin"
   },
   {
-    "nombre": "User",
+    "nombre": "Marcos",
     "email": "user@mail.com",
     "pass": "123456",
+    "imagen": "https://cdn.jsdelivr.net/gh/faker-js/assets-person-portrait/male/512/60.jpg",
     "rol": "user"
   },  
   {
-    "nombre": "User2",
+    "nombre": "Ruben",
     "email": "user1@mail.com",
     "pass": "123456",
+    "imagen": "https://avatars.githubusercontent.com/u/35258003",
     "rol": "user"
   }  
 ]

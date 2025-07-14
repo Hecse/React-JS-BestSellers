@@ -1,8 +1,6 @@
-import React, { useState } from "react";
+const AdminTable = ({ productos, eliminarProducto }) => {
+  //console.log(productos);
 
-const AdminTable = ({ productos }) => {
-  // console.log(productos);
-  
   return (
     <table>
       <thead>
@@ -15,17 +13,36 @@ const AdminTable = ({ productos }) => {
           <th>Borrar</th>
         </tr>
       </thead>
+
       <tbody>
-        {productos.length === 0 ? (<h3>No hay productos para mostrar</h3>) : (
+        {productos.length === 0 ? (
+          <h3>No hay productos para mostrar</h3>
+        ) : (
           <>
             {productos.map((item, index) => (
               <tr key={index}>
-                <td><img src={item.imagen} alt={item.titulo}/></td>
+                <td>
+                  <img src={item.imagen} alt={item.titulo} />
+                </td>
                 <td>{item.titulo}</td>
-                <td>${" "}{new Intl.NumberFormat("es-AR", {minimumFractionDigits: 2, maximumFractionDigits: 2,}).format(item.precio)}</td>
+                <td>
+                  ${" "}
+                  {new Intl.NumberFormat("es-AR", {
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                  }).format(item.precio)}
+                </td>
                 <td>{item.stock}</td>
-                <td><button>editar</button></td>
-                <td><button>borrar</button></td>
+
+                <td>
+                  <button>editar</button>
+                </td>
+
+                <td>
+                  <button onClick={() => eliminarProducto(item.id)}>
+                    borrar
+                  </button>
+                </td>
               </tr>
             ))}
           </>
