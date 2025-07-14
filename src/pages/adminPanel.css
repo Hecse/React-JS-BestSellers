@@ -139,7 +139,8 @@ h2 span {
   text-align: center;
 }
 
-.etiqueta-agregar {
+.etiqueta-agregar, 
+.etiqueta-editar {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -166,7 +167,8 @@ h2 span {
   gap: 10px;
 }
 
-.error-agregar p {
+.error-agregar p, 
+.error-editar p  {
     font-size: 0.8em;
     color: red;
     margin-top: 3px;

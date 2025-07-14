@@ -9,6 +9,8 @@ import FormAgregar from "../components/FormAgregar";
 const AdminPanel = () => {
   const { productos, setProductos } = useContext(CartContext);
   const [openAgregar, setOpenAgregar] = useState(false);
+  const [seleccionado, setSeleccionado] = useState(null);
+  const [openEditar, setOpenEditar] = useState(false)
 
   const cargarProductos = async () => {
     try {
@@ -66,6 +68,25 @@ const AdminPanel = () => {
       }
     }
   };
+
+  const editarProducto = async (producto) => {
+    try {
+      const respuesta = await fetch(
+        `https://6873ad94c75558e27354e78e.mockapi.io/proyecto-ecommerce/articles/${producto.id}`, 
+      {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(producto),
+      })
+      if (!respuesta.ok) throw Error("Error al actulizar el producto");
+        alert("Producto actualizado correctamente");
+        setOpenEditar(false);
+        setSeleccionado(null)
+        cargarProductos();
+    } catch (error) {
+      alert("Hubo un problema al actualizar el producto");
+    }
+  }
 
   return (
     <div className="admin">
