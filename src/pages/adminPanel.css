@@ -84,6 +84,11 @@ h2 span {
   margin-right: 20px;
 }
 
+.admin-salir button {
+  border: 0;
+  background-color: white;
+}
+
 .admin section {
   background-color: white;
   border-radius: 2rem;
@@ -149,18 +154,21 @@ h2 span {
   text-align: left;
 }
 
-.etiqueta-agregar label {
+.etiqueta-agregar label,
+.etiqueta-editar label {
   margin-bottom: 4px;
   font-weight: 600;
   color: rgb(53, 52, 52);
 }
 
-.etiqueta-agregar input {
+.etiqueta-agregar input,
+.etiqueta-editar input {
   padding: 10px;
     border-radius: 0px;
     border: 1px solid brown;
 }
 
+.etiqueta-agregar-check,
 .etiqueta-agregar-check {
   display: flex;
   flex-wrap: wrap;
@@ -215,5 +223,4 @@ tbody tr:hover {
 
 td {
   font-size: 0.8rem;
-
 }

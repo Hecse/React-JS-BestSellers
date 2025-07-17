@@ -1,16 +1,18 @@
 import "./adminPanel.css";
 import logo from "/logo.png";
-import { Link } from "react-router-dom";
 import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
 import AdminTable from "../components/AdminTable";
 import FormAgregar from "../components/FormAgregar";
+import { useNavigate } from "react-router-dom";
 
 const AdminPanel = () => {
-  const { productos, setProductos } = useContext(CartContext);
+  const { productos, setProductos, setIsAutenticated } =
+    useContext(CartContext);
   const [openAgregar, setOpenAgregar] = useState(false);
   const [seleccionado, setSeleccionado] = useState(null);
-  const [openEditar, setOpenEditar] = useState(false)
+  const [openEditar, setOpenEditar] = useState(false);
+  const navigate = useNavigate();
 
   const cargarProductos = async () => {
     try {
@@ -72,21 +74,22 @@ const AdminPanel = () => {
   const editarProducto = async (producto) => {
     try {
       const respuesta = await fetch(
-        `https://6873ad94c75558e27354e78e.mockapi.io/proyecto-ecommerce/articles/${producto.id}`, 
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(producto),
-      })
+        `https://6873ad94c75558e27354e78e.mockapi.io/proyecto-ecommerce/articles/${producto.id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(producto),
+        }
+      );
       if (!respuesta.ok) throw Error("Error al actulizar el producto");
-        alert("Producto actualizado correctamente");
-        setOpenEditar(false);
-        setSeleccionado(null)
-        cargarProductos();
+      alert("Producto actualizado correctamente");
+      setOpenEditar(false);
+      setSeleccionado(null);
+      cargarProductos();
     } catch (error) {
       alert("Hubo un problema al actualizar el producto");
     }
-  }
+  };
 
   return (
     <div className="admin">
@@ -108,11 +111,19 @@ const AdminPanel = () => {
         </div> */}
 
         <div className="admin-salir">
-          <Link to="/" className="link">
+          <button
+            className="link"
+            onClick={() => {
+              setIsAutenticated(false);
+              navigate("/");
+              localStorage.removeItem("isAuth");
+            }}
+          >
             <div>
-              <small>Salir</small> <i className="fi fi-rr-exit"></i>
+              <small>Salir </small>
+              <i className="fi fi-rr-exit"></i>
             </div>
-          </Link>
+          </button>
         </div>
       </header>
 
@@ -126,14 +137,23 @@ const AdminPanel = () => {
         </div>
       </section>
 
-      <section className="admin-agregar-form">
-        <div className="admin-agregar-contenedor">
-          {openAgregar && <FormAgregar onAgregar={agregarProducto} setOpenAgregar={setOpenAgregar}/>}        
-        </div>
-      </section>
+      {openAgregar && (
+        <FormAgregar
+          onAgregar={agregarProducto}
+          setOpenAgregar={setOpenAgregar}
+        />
+      )}
 
       <section className="admin-tabla">
-        <AdminTable productos={productos} eliminarProducto={eliminarProducto}/>
+        <AdminTable
+          productos={productos}
+          eliminarProducto={eliminarProducto}
+          editarProducto={editarProducto}
+          seleccionado={seleccionado}
+          setSeleccionado={setSeleccionado}
+          openEditar={openEditar}
+          setOpenEditar={setOpenEditar}
+        />
       </section>
     </div>
   );
