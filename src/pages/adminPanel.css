@@ -40,21 +40,22 @@ a {
 
 
 /* Header */
+.admin header {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: center; */
+  /* width: 1024px; */
+  width: 100%;
+  /* max-width: 1024px; */
+  background-color: white;
+  border-radius: 2rem;
+  box-shadow: 0.3rem 0.3rem 1rem rgb(48, 45, 45);
+}
+
 .admin h3 {
   margin-top: 0px;
   margin-bottom: 0px;
   color: #4C1F7A;
-}
-
-.admin header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 1024px;
-  max-width: 1024px;
-  background-color: white;
-  border-radius: 2rem;
-  box-shadow: 0.3rem 0.3rem 1rem rgb(48, 45, 45);
 }
 
 .admin-logo {
@@ -70,7 +71,6 @@ a {
 
 .admin-logo h2 {
   font-family: "Lexend Deca", sans-serif;
-  /*  font-optical-sizing: auto; */
   font-weight: 800;
   color: #FF8000;
 }
@@ -89,14 +89,17 @@ h2 span {
 .admin-salir button {
   border: 0;
   background-color: white;
+  font-size: 1rem;
+  font-weight: 800;
 }
+
 
 
 /* Section */
 .admin section {
   background-color: white;
   border-radius: 2rem;
-  width: 1024px;
+  width: 100%;
   max-width: 1024px;
   display: flex;
   align-items: center;
@@ -116,26 +119,8 @@ h2 span {
   margin-left: 20px;
 }
 
-button {
-  margin-right: 15px;
-  background-color: #db6e01;
-  color: #ECDFCC;
-  padding: 0.5rem;
-  border-radius: 1rem;
-  cursor: pointer;
-  border: 2px solid #db6e01;
-  letter-spacing: 1px;
-  transition: 0.4s;
-}
-
-button:hover {
-  border: solid 2px red;
-  background-color: white;
-  color: red;
-}
-
 .admin-agregar-form {
-  padding: 25px;
+  padding: 20px;
   box-shadow: 0.3rem 0.3rem 1rem rgb(48, 45, 45);
 }
 
@@ -144,9 +129,10 @@ button:hover {
   justify-content: center;
   align-items: center;
   /* max-width: 650px; */
-  height: 100%;
+  /* height: 100%; */
   margin: 10px auto;
   text-align: center;
+  /* border: 2px solid chocolate; */
 }
 
 
@@ -249,4 +235,19 @@ td {
 .accordion-container.show {
   max-height: 800px; 
   padding: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 426px) {
+  .admin header {
+    display: flex;
+    flex-direction: column;
+
+  }
+
+  .admin section {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
 }

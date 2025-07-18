@@ -1,57 +1,80 @@
 import { Link } from "react-router-dom";
 import "./stylesEstatic.css";
-import logo from '/logo.png';
+import logo from "/logo.png";
 import { CartContext } from "../../context/CartContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 const Header = () => {
-
-  const {cartItems} = useContext(CartContext)  
-
+  const { cartItems } = useContext(CartContext);
   const totalItems = cartItems.reduce((acc, item) => acc + item.cantidad, 0);
 
-  // console.log(countItems);
-  // console.log(cartItems);   
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
     <>
-      <header>        
-        <Link to="/">
-          <div className="logo">
-            <img src={logo} alt="logo"/>
-            <h1>best<span>sellers</span></h1>          
-          </div>
-        </Link>       
-
-        {/* <div className="buscador">
-            <input
-            type="text"
-            placeholder="Buscar por título ó autor"
-            value={busqueda}
-            onChange={(e) => {setBusqueda(e.target.value);
-            }}
-          />
-        </div> */}
-
-        <div className="carro">
-          <p>{totalItems}</p>          
-          <Link to="/Cart"><i className="fi fi-rr-shopping-cart"></i></Link>
+      <header className="header">
+        <div>
+          <Link to="/">
+            <div className="logo">
+              <img src={logo} alt="logo" />
+              <h1>
+                best<span>sellers</span>
+              </h1>
+            </div>
+          </Link>
         </div>
-          
-        <div>          
-          <Link to="/Login"><i className="fi fi-rs-user"></i></Link>
+
+        <div className="header-icons">
+          <div className="carro">
+            <p>{totalItems}</p>
+            <Link to="/Cart">
+              <i className="fi fi-rr-shopping-cart"></i>
+            </Link>
+          </div>
+
+          <div>
+            <Link to="/Login">
+              <i className="fi fi-rs-user"></i>
+            </Link>
+          </div>
+
+          <button className="burger" onClick={toggleMenu}>
+            <i className="fi fi-rr-menu-burger"></i>
+          </button>
         </div>
       </header>
 
-      <nav>
+      <nav className={`nav ${isMenuOpen ? "open" : ""}`}>
         <ul>
-          <li><Link to="/" className="link">Inicio</Link></li>
-          <li><Link to="/ofertas" className="link">Ofertas</Link></li>
-          <li><Link to="/promociones" className="link">Promociones</Link></li>
-          <li><Link to="/novedades" className="link">Novedades</Link></li>
-          <li><Link to="/contacto" className="link">Contacto</Link></li>
+          <li>
+            <Link to="/" className="link" onClick={toggleMenu}>
+              Inicio
+            </Link>
+          </li>
+          <li>
+            <Link to="/ofertas" className="link" onClick={toggleMenu}>
+              Ofertas
+            </Link>
+          </li>
+          <li>
+            <Link to="/promociones" className="link" onClick={toggleMenu}>
+              Promociones
+            </Link>
+          </li>
+          <li>
+            <Link to="/novedades" className="link" onClick={toggleMenu}>
+              Novedades
+            </Link>
+          </li>
+          <li>
+            <Link to="/contacto" className="link" onClick={toggleMenu}>
+              Contacto
+            </Link>
+          </li>
         </ul>
-      </nav>      
+      </nav>
     </>
   );
 };

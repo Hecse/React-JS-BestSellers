@@ -103,7 +103,7 @@ const AdminTable = ({
                   <td>{item.stock}</td>
 
                   <td>
-                    <button onClick={() => handleEditarClick(item)}>
+                    <button className="button-agregar" onClick={() => handleEditarClick(item)}>
                       {openEditar && seleccionado?.id === item.id
                         ? "Cancelar"
                         : "Editar"}
@@ -111,7 +111,7 @@ const AdminTable = ({
                   </td>
 
                   <td>
-                    <button onClick={() => eliminarProducto(item.id)}>
+                    <button className="button-agregar" onClick={() => eliminarProducto(item.id)}>
                       Borrar
                     </button>
                   </td>

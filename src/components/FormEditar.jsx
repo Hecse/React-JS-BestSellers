@@ -4,33 +4,33 @@ const FormEditar = ({ productoSeleccionado, onActualizar }) => {
   const [producto, setProducto] = useState(productoSeleccionado || {});
 
   const [errors, setErrors] = useState({});
-
-  const validarFormAgregar = () => {
-    const erroresFormAgregar = {};
-    if (!producto.titulo.trim()) {
-      erroresFormAgregar.titulo = "El título es obligatorio";
-    }
-    if (!producto.autor.trim()) {
-      erroresFormAgregar.autor = "El autor es obligatorio";
-    }
-    if (!producto.precio || producto.precio <= 0) {
-      erroresFormAgregar.precio = "El precio debe ser mayor a 0";
-    }
-    if (!producto.descripcion.trim()) {
-      erroresFormAgregar.descripcion = "La descripcion es obligatoria";
-    }
-    if (!producto.categoria || producto.categoria.length < 1) {
-      erroresFormAgregar.categoria = "Debe seleccionar al menos una categoria";
-    }
-    if (!producto.imagen.trim()) {
-      erroresFormAgregar.imagen = "La imagen es obligatoria";
-    }
-    if (!producto.stock || producto.stock <= 0) {
-      erroresFormAgregar.stock = "El stock debe ser mayor a 0";
-    }
-    setErrors(erroresFormAgregar);
-    return Object.keys(erroresFormAgregar).length === 0;
-  };
+  
+    const validarFormAgregar = () => {
+      const erroresFormAgregar = {};
+      if (!producto.titulo.trim()) {
+        erroresFormAgregar.titulo = "El título es obligatorio";
+      }
+      if (!producto.autor.trim()) {
+        erroresFormAgregar.autor = "El autor es obligatorio";
+      }
+      if (!producto.precio || producto.precio <= 0) {
+        erroresFormAgregar.precio = "El precio debe ser mayor a 0";
+      }
+      if (!producto.descripcion.trim()) {
+        erroresFormAgregar.descripcion = "La descripcion es obligatoria";
+      }
+      if (!producto.categoria || producto.categoria.length < 1) {
+        erroresFormAgregar.categoria = "Debe seleccionar al menos una categoria";
+      }
+      if (!producto.imagen.trim()) {
+        erroresFormAgregar.imagen = "La imagen es obligatoria";
+      }
+      if (!producto.stock || producto.stock <= 0) {
+        erroresFormAgregar.stock = "El stock debe ser mayor a 0";
+      }
+      setErrors(erroresFormAgregar);
+      return Object.keys(erroresFormAgregar).length === 0;
+    };
 
   useEffect(() => {
     if (productoSeleccionado) {
@@ -154,7 +154,7 @@ const FormEditar = ({ productoSeleccionado, onActualizar }) => {
           // required
           name="descripcion"
           placeholder="Descripcion"
-          cols="60"
+          /* cols="60" */
           rows="5"
         />
 
@@ -224,7 +224,7 @@ const FormEditar = ({ productoSeleccionado, onActualizar }) => {
         )}
       </div>
 
-      <button type="submit" value="enviar">
+      <button className="button-agregar" type="submit" value="enviar">
         Actualizar producto
       </button>
     </form>

@@ -79,7 +79,7 @@ const AdminPanel = () => {
         </div>
 
         <div>
-          <button onClick={() => setOpenAgregar(!openAgregar)}>
+          <button className="button-agregar" onClick={() => setOpenAgregar(!openAgregar)}>
             {openAgregar ? "Cancelar" : "Agregar Producto"}
           </button>
         </div>

@@ -93,7 +93,7 @@ export const AdminProvider = ({ children }) => {
     } catch (error) {
       alert("Hubo un problema al actualizar el producto");
     }
-  };
+  };  
 
   return (
     <AdminContext.Provider
@@ -111,7 +111,7 @@ export const AdminProvider = ({ children }) => {
         busqueda,
         setIsAutenticated,
         setOpenEditar,
-        productosFiltrados,
+        productosFiltrados        
       }}
     >
       {children}

@@ -163,7 +163,7 @@ const FormAgregar = ({ onAgregar }) => {
               // required
               name="descripcion"
               placeholder="Descripcion"
-              cols="60"
+              /* cols="60" */
               rows="5"
             />
 
@@ -233,7 +233,7 @@ const FormAgregar = ({ onAgregar }) => {
             )}
           </div>
 
-          <button type="submit" value="enviar" className="">
+          <button className="button-agregar" type="submit" value="enviar">
             Agregar producto
           </button>          
         </form>
