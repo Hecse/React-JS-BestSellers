@@ -1,5 +1,5 @@
+import React, { useEffect, useRef, useState } from "react";
 import FormEditar from "../components/FormEditar";
-import React from "react";
 
 const AdminTable = ({
   productos,
@@ -9,6 +9,7 @@ const AdminTable = ({
   setSeleccionado,
   openEditar,
   setOpenEditar,
+  productosFiltrados,  
 }) => {
   const handleEditarClick = (item) => {
     // Si ya está editando ese mismo, cancela
@@ -20,6 +21,49 @@ const AdminTable = ({
       setSeleccionado(item);
     }
   };
+
+  const AccordionEditar = ({ isOpen, children }) => {
+    const containerRef = useRef(null);
+    const [shouldRender, setShouldRender] = useState(isOpen);
+    const transitionDuration = 400;
+
+    useEffect(() => {
+    const el = containerRef.current;
+
+    if (isOpen) {
+      setShouldRender(true);
+      requestAnimationFrame(() => {
+        if (el) el.classList.add("show");
+      });
+    } else if (el) {
+      // Animación de cierre
+      el.classList.remove("show");
+
+      // Fallback: desmonta tras la duración si no se dispara el evento
+      const timeout = setTimeout(() => {
+        setShouldRender(false);
+      }, transitionDuration);
+
+      const handleTransitionEnd = (e) => {
+        if (e.propertyName === "max-height") {
+          setShouldRender(false);
+          clearTimeout(timeout);
+          el.removeEventListener("transitionend", handleTransitionEnd);
+        }
+      };
+
+      el.addEventListener("transitionend", handleTransitionEnd);
+    }
+  }, [isOpen]);
+
+  if (!shouldRender) return null;
+
+  return (
+    <div ref={containerRef} className="accordion-container">
+      {children}
+    </div>
+  );
+};
 
   return (
     <>
@@ -36,14 +80,14 @@ const AdminTable = ({
         </thead>
 
         <tbody>
-          {productos.length === 0 ? (
+          {productosFiltrados.length === 0 ? (
             <tr>
               <td colSpan="6" style={{ textAlign: "center" }}>
                 <h3>No hay productos cargados</h3>
               </td>
             </tr>
           ) : (
-            productos.map((item) => (
+            productosFiltrados.map((item) => (
               <React.Fragment key={item.id}>
                 <tr>
                   <td>
@@ -75,17 +119,18 @@ const AdminTable = ({
                 </tr>
 
                 {/* Renderiza el formulario debajo si este es el producto editado */}
-                {openEditar && seleccionado?.id === item.id && (
-                  <tr>
-                    <td colSpan="6">
+                <tr>
+                  <td colSpan="6">
+                    <AccordionEditar
+                      isOpen={openEditar && seleccionado?.id === item.id}
+                    >
                       <FormEditar
                         onActualizar={editarProducto}
                         productoSeleccionado={seleccionado}
-                        setOpenEditar={setOpenEditar}
                       />
-                    </td>
-                  </tr>
-                )}
+                    </AccordionEditar>
+                  </td>
+                </tr>
               </React.Fragment>
             ))
           )}

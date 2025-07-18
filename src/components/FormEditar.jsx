@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const FormEditar = ({ productoSeleccionado, onActualizar, setOpenEditar }) => {
+const FormEditar = ({ productoSeleccionado, onActualizar }) => {
   const [producto, setProducto] = useState(productoSeleccionado || {});
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const FormEditar = ({ productoSeleccionado, onActualizar, setOpenEditar }) => {
   };
 
   return (
-    <form
+    <form className="editar"
       onSubmit={(e) => {
         e.preventDefault();
         onActualizar(producto);

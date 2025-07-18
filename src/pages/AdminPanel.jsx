@@ -7,12 +7,12 @@ import FormAgregar from "../components/FormAgregar";
 import { useNavigate } from "react-router-dom";
 
 const AdminPanel = () => {
-  const { productos, setProductos, setIsAutenticated } =
-    useContext(CartContext);
+  const { productos, setProductos, setIsAutenticated } = useContext(CartContext);
   const [openAgregar, setOpenAgregar] = useState(false);
   const [seleccionado, setSeleccionado] = useState(null);
   const [openEditar, setOpenEditar] = useState(false);
   const navigate = useNavigate();
+  const [busqueda, setBusqueda] = useState("");
 
   const cargarProductos = async () => {
     try {
@@ -26,6 +26,14 @@ const AdminPanel = () => {
       console.log("Error al cargar los productos", error);
     }
   };
+
+  const productosFiltrados = productos.filter((producto) => {
+    const titulo = producto?.titulo?.toLowerCase() || "";
+    const autor = producto?.autor?.toLowerCase() || "";
+    const termino = busqueda.toLowerCase();
+
+    return titulo.includes(termino) || autor.includes(termino);
+  });
 
   useEffect(() => {
     cargarProductos();
@@ -132,6 +140,17 @@ const AdminPanel = () => {
           <h3>Lista de productos</h3>
         </div>
 
+        <div className="buscador">
+          <input
+            type="text"
+            placeholder="Buscar por título ó autor"
+            value={busqueda}
+            onChange={(e) => {
+              setBusqueda(e.target.value);
+            }}
+          />
+        </div>
+
         <div>
           <button onClick={() => setOpenAgregar(true)}>Agregar Producto</button>
         </div>
@@ -153,6 +172,7 @@ const AdminPanel = () => {
           setSeleccionado={setSeleccionado}
           openEditar={openEditar}
           setOpenEditar={setOpenEditar}
+          productosFiltrados={productosFiltrados}
         />
       </section>
     </div>

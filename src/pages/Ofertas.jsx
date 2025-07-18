@@ -6,7 +6,6 @@ import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
 
 const Ofertas = () => {
-
   const {ofertas, cargando, handleAddToCart} = useContext(CartContext)
 
   return (
@@ -18,7 +17,7 @@ const Ofertas = () => {
         {cargando ? (
           <img src={loading} />
         ) : (
-          <ProductList productos={ofertas} addToCart={handleAddToCart}/>
+          <ProductList productosFiltrados={ofertas} addToCart={handleAddToCart}/>
         )}
       </main>
 

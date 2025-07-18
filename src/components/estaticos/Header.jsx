@@ -23,14 +23,15 @@ const Header = () => {
           </div>
         </Link>       
 
-        <div className="buscador">
-            <form action="">
-                <label htmlFor="buscar"></label>
-                <input type="text" name="buscar" id="buscar" maxLength="400" placeholder="Buscar" required/>
-
-                <button><i className="fi fi-rr-search"></i></button>
-            </form>
-        </div>
+        {/* <div className="buscador">
+            <input
+            type="text"
+            placeholder="Buscar por título ó autor"
+            value={busqueda}
+            onChange={(e) => {setBusqueda(e.target.value);
+            }}
+          />
+        </div> */}
 
         <div className="carro">
           <p>{totalItems}</p>          

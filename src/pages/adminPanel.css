@@ -38,6 +38,8 @@ a {
   /* height: 100vh; */
 }
 
+
+/* Header */
 .admin h3 {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -89,6 +91,8 @@ h2 span {
   background-color: white;
 }
 
+
+/* Section */
 .admin section {
   background-color: white;
   border-radius: 2rem;
@@ -99,6 +103,7 @@ h2 span {
   margin-top: 15px;
 }
 
+/* Agregar */
 .admin-agregar {
   display: flex;
   justify-content: space-between;
@@ -111,7 +116,7 @@ h2 span {
   margin-left: 20px;
 }
 
-.admin-agregar button {
+button {
   margin-right: 15px;
   background-color: #db6e01;
   color: #ECDFCC;
@@ -123,7 +128,7 @@ h2 span {
   transition: 0.4s;
 }
 
-.admin-agregar button:hover {
+button:hover {
   border: solid 2px red;
   background-color: white;
   color: red;
@@ -144,6 +149,8 @@ h2 span {
   text-align: center;
 }
 
+
+/* Agregar-Editar*/
 .etiqueta-agregar, 
 .etiqueta-editar {
   position: relative;
@@ -181,6 +188,7 @@ h2 span {
     color: red;
     margin-top: 3px;
 }
+
 
 /* Tabla */
 .admin-tabla {
@@ -223,4 +231,22 @@ tbody tr:hover {
 
 td {
   font-size: 0.8rem;
+}
+
+.editar {
+  padding: 20px;
+  margin: 10px;
+  border-bottom: 2px solid rgb(219, 219, 219);
+}
+
+.accordion-container {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 1rem;
+}
+
+.accordion-container.show {
+  max-height: 800px; 
+  padding: 1rem;
 }

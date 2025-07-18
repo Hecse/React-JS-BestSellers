@@ -6,8 +6,7 @@ import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
 
 const Novedades = () => {
-
-  const {novedad, cargando, handleAddToCart} = useContext(CartContext)
+  const { novedad, cargando, handleAddToCart } = useContext(CartContext);
 
   return (
     <>
@@ -15,7 +14,11 @@ const Novedades = () => {
 
       <main>
         <h3>Libros en categoría: Novedades</h3>
-        {cargando ? (<img src={loading} />) : (<ProductList productos={novedad} addToCart={handleAddToCart}/>)}
+        {cargando ? (
+          <img src={loading} />
+        ) : (
+          <ProductList productosFiltrados={novedad} addToCart={handleAddToCart} />
+        )}
       </main>
 
       <Footer />

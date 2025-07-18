@@ -10,6 +10,15 @@ export const CartProvider = ({ children }) => {
   const [error, setError] = useState(false);
   const [compraFinalizada, setCompraFinalizada] = useState(false);
   const [isAutenticated, setIsAutenticated] = useState(false);
+  const [busqueda, setBusqueda] = useState("");
+
+  const productosFiltrados = productos.filter((producto) => {
+    const titulo = producto?.titulo?.toLowerCase() || "";
+    const autor = producto?.autor?.toLowerCase() || "";
+    const termino = busqueda.toLowerCase();
+
+    return titulo.includes(termino) || autor.includes(termino);
+  });
 
   // agrega un producto al carrito
   const handleAddToCart = (producto) => {
@@ -102,18 +111,15 @@ export const CartProvider = ({ children }) => {
   const ofertas = productos.filter((libros) =>
     libros.categoria.includes("Oferta")
   );
-  // console.log(ofertas)
-
+  
   const novedad = productos.filter((libros) =>
     libros.categoria.includes("Novedad")
   );
-  // console.log(novedad)
-
+  
   const promociones = productos.filter((libros) =>
     libros.categoria.includes("Promocion")
   );
-  // console.log(promociones)
-
+  
   return (
     <CartContext.Provider
       value={{
@@ -132,7 +138,10 @@ export const CartProvider = ({ children }) => {
         handleBuy,
         compraFinalizada,
         isAutenticated,
-        setIsAutenticated
+        setIsAutenticated,
+        productosFiltrados,
+        setBusqueda,
+        busqueda
       }}
     >
       {children}

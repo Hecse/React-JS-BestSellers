@@ -8,20 +8,33 @@ import { CartContext } from "../context/CartContext";
 import { useContext } from "react";
 
 const Home = () => {
-  
-  const {cargando, productos} = useContext(CartContext)
-  // console.log(productos);
-  // console.log(cartItems);
+  const { cargando, setBusqueda, busqueda, productosFiltrados } =
+    useContext(CartContext);
 
   return (
     <>
-      <Header/>
-      <Hero/>
+      <Header />
+      <Hero />
       <main>
         <h3>Lista de productos</h3>
-        {cargando ? (<img src={loading} />) : (<ProductList productos={productos}/>)}
-      </main>      
-      <Footer/>
+        <div className="buscador">
+          <input
+            className="buscador-home"
+            type="text"
+            placeholder="Buscar por título ó autor"
+            value={busqueda}
+            onChange={(e) => {
+              setBusqueda(e.target.value);
+            }}
+          />
+        </div>
+        {cargando ? (
+          <img src={loading} />
+        ) : (
+          <ProductList productosFiltrados={productosFiltrados} />
+        )}
+      </main>
+      <Footer />
     </>
   );
 };
