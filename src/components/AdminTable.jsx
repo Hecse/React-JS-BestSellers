@@ -2,14 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import FormEditar from "../components/FormEditar";
 
 const AdminTable = ({
-  productos,
   eliminarProducto,
   editarProducto,
   seleccionado,
   setSeleccionado,
   openEditar,
   setOpenEditar,
-  productosFiltrados,  
+  productosFiltrados,
 }) => {
   const handleEditarClick = (item) => {
     // Si ya está editando ese mismo, cancela
@@ -28,42 +27,42 @@ const AdminTable = ({
     const transitionDuration = 400;
 
     useEffect(() => {
-    const el = containerRef.current;
+      const el = containerRef.current;
 
-    if (isOpen) {
-      setShouldRender(true);
-      requestAnimationFrame(() => {
-        if (el) el.classList.add("show");
-      });
-    } else if (el) {
-      // Animación de cierre
-      el.classList.remove("show");
+      if (isOpen) {
+        setShouldRender(true);
+        requestAnimationFrame(() => {
+          if (el) el.classList.add("show");
+        });
+      } else if (el) {
+        // Animación de cierre
+        el.classList.remove("show");
 
-      // Fallback: desmonta tras la duración si no se dispara el evento
-      const timeout = setTimeout(() => {
-        setShouldRender(false);
-      }, transitionDuration);
-
-      const handleTransitionEnd = (e) => {
-        if (e.propertyName === "max-height") {
+        // Fallback: desmonta tras la duración si no se dispara el evento
+        const timeout = setTimeout(() => {
           setShouldRender(false);
-          clearTimeout(timeout);
-          el.removeEventListener("transitionend", handleTransitionEnd);
-        }
-      };
+        }, transitionDuration);
 
-      el.addEventListener("transitionend", handleTransitionEnd);
-    }
-  }, [isOpen]);
+        const handleTransitionEnd = (e) => {
+          if (e.propertyName === "max-height") {
+            setShouldRender(false);
+            clearTimeout(timeout);
+            el.removeEventListener("transitionend", handleTransitionEnd);
+          }
+        };
 
-  if (!shouldRender) return null;
+        el.addEventListener("transitionend", handleTransitionEnd);
+      }
+    }, [isOpen]);
 
-  return (
-    <div ref={containerRef} className="accordion-container">
-      {children}
-    </div>
-  );
-};
+    if (!shouldRender) return null;
+
+    return (
+      <div ref={containerRef} className="accordion-container">
+        {children}
+      </div>
+    );
+  };
 
   return (
     <>
@@ -118,7 +117,6 @@ const AdminTable = ({
                   </td>
                 </tr>
 
-                {/* Renderiza el formulario debajo si este es el producto editado */}
                 <tr>
                   <td colSpan="6">
                     <AccordionEditar

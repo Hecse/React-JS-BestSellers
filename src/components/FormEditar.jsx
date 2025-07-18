@@ -3,6 +3,35 @@ import { useEffect, useState } from "react";
 const FormEditar = ({ productoSeleccionado, onActualizar }) => {
   const [producto, setProducto] = useState(productoSeleccionado || {});
 
+  const [errors, setErrors] = useState({});
+
+  const validarFormAgregar = () => {
+    const erroresFormAgregar = {};
+    if (!producto.titulo.trim()) {
+      erroresFormAgregar.titulo = "El título es obligatorio";
+    }
+    if (!producto.autor.trim()) {
+      erroresFormAgregar.autor = "El autor es obligatorio";
+    }
+    if (!producto.precio || producto.precio <= 0) {
+      erroresFormAgregar.precio = "El precio debe ser mayor a 0";
+    }
+    if (!producto.descripcion.trim()) {
+      erroresFormAgregar.descripcion = "La descripcion es obligatoria";
+    }
+    if (!producto.categoria || producto.categoria.length < 1) {
+      erroresFormAgregar.categoria = "Debe seleccionar al menos una categoria";
+    }
+    if (!producto.imagen.trim()) {
+      erroresFormAgregar.imagen = "La imagen es obligatoria";
+    }
+    if (!producto.stock || producto.stock <= 0) {
+      erroresFormAgregar.stock = "El stock debe ser mayor a 0";
+    }
+    setErrors(erroresFormAgregar);
+    return Object.keys(erroresFormAgregar).length === 0;
+  };
+
   useEffect(() => {
     if (productoSeleccionado) {
       setProducto({
@@ -11,10 +40,6 @@ const FormEditar = ({ productoSeleccionado, onActualizar }) => {
       });
     }
   }, [productoSeleccionado]);
-
-  /* useEffect(() => {
-    setProducto(productoSeleccionado);
-  }, [productoSeleccionado]); */
 
   const categoriasDisponibles = [
     "Americano",
@@ -35,12 +60,13 @@ const FormEditar = ({ productoSeleccionado, onActualizar }) => {
     "Shonen",
   ];
 
-  // guarda la información del formulario
+  // guarda la información del value formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProducto({ ...producto, [name]: value });
   };
 
+  // arma un array de categorias por producto
   const handleCheckboxChange = (e) => {
     const { value, checked } = e.target;
     let nuevasCategorias = [...producto.categoria];
@@ -52,12 +78,18 @@ const FormEditar = ({ productoSeleccionado, onActualizar }) => {
     setProducto({ ...producto, categoria: nuevasCategorias });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!validarFormAgregar()) {
+      return;
+    }
+    onActualizar(producto);    
+  };
+
   return (
-    <form className="editar"
-      onSubmit={(e) => {
-        e.preventDefault();
-        onActualizar(producto);
-      }}
+    <form
+      className="editar"
+      onSubmit={handleSubmit}
     >
       <div className="etiqueta-editar">
         <label>Titulo:</label>
@@ -70,6 +102,12 @@ const FormEditar = ({ productoSeleccionado, onActualizar }) => {
           placeholder="Titulo"
           maxLength="60"
         />
+
+        {errors.titulo && (
+          <div className="error-agregar">
+            <p>{errors.titulo}</p>
+          </div>
+        )}
       </div>
 
       <div className="etiqueta-editar">
@@ -82,6 +120,12 @@ const FormEditar = ({ productoSeleccionado, onActualizar }) => {
           name="autor"
           placeholder="Autor"
         />
+
+        {errors.autor && (
+          <div className="error-agregar">
+            <p>{errors.autor}</p>
+          </div>
+        )}
       </div>
 
       <div className="etiqueta-editar">
@@ -94,6 +138,12 @@ const FormEditar = ({ productoSeleccionado, onActualizar }) => {
           name="precio"
           placeholder="Precio"
         />
+
+        {errors.precio && (
+          <div className="error-agregar">
+            <p>{errors.precio}</p>
+          </div>
+        )}
       </div>
 
       <div className="etiqueta-editar">
@@ -107,6 +157,12 @@ const FormEditar = ({ productoSeleccionado, onActualizar }) => {
           cols="60"
           rows="5"
         />
+
+        {errors.descripcion && (
+          <div className="error-agregar">
+            <p>{errors.descripcion}</p>
+          </div>
+        )}
       </div>
 
       <div className="etiqueta-editar">
@@ -124,6 +180,12 @@ const FormEditar = ({ productoSeleccionado, onActualizar }) => {
             </label>
           ))}
         </div>
+
+        {errors.categoria && (
+          <div className="error-agregar">
+            <p>{errors.categoria}</p>
+          </div>
+        )}
       </div>
 
       <div className="etiqueta-editar">
@@ -136,6 +198,12 @@ const FormEditar = ({ productoSeleccionado, onActualizar }) => {
           name="imagen"
           placeholder="Link de la imagen"
         />
+
+        {errors.imagen && (
+          <div className="error-agregar">
+            <p>{errors.imagen}</p>
+          </div>
+        )}
       </div>
 
       <div className="etiqueta-editar">
@@ -148,6 +216,12 @@ const FormEditar = ({ productoSeleccionado, onActualizar }) => {
           name="stock"
           placeholder="Stock"
         />
+
+        {errors.stock && (
+          <div className="error-agregar">
+            <p>{errors.stock}</p>
+          </div>
+        )}
       </div>
 
       <button type="submit" value="enviar">

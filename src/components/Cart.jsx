@@ -41,9 +41,9 @@ const Cart = () => {
                 <small>Cantidad</small>
     
                 <div className="carrito-producto-cantidad">
-                  <button className="carrito-producto-restar" onClick={() => handleDecrease(item.id)} disabled={item.cantidad <= 1}> - </button>
+                  <button className="carrito-producto-restar" onClick={() => handleDecrease(item.id)} disabled={item.cantidad <= 1}> <p>-</p> </button>
                   <h4 className="cantidad"> {item.cantidad} </h4>
-                  <button className="carrito-producto-sumar" onClick={() => handleIncrease(item.id)} disabled={item.cantidad >= item.stock}> + </button>
+                  <button className="carrito-producto-sumar" onClick={() => handleIncrease(item.id)} disabled={item.cantidad >= item.stock}> <p>+</p> </button>
                 </div>
                
                 <div className="carrito-producto-stock">

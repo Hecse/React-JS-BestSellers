@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const FormAgregar = ({ onAgregar, setOpenAgregar }) => {
+const FormAgregar = ({ onAgregar }) => {
   const [producto, setProducto] = useState({
     titulo: "",
     autor: "",
@@ -10,13 +10,13 @@ const FormAgregar = ({ onAgregar, setOpenAgregar }) => {
     imagen: "",
     stock: "",
   });
-
-  const [errors, setErrors] = useState({});
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProducto({ ...producto, [name]: value });
   };
+
+  const [errors, setErrors] = useState({});
 
   const validarFormAgregar = () => {
     const erroresFormAgregar = {};
@@ -38,8 +38,8 @@ const FormAgregar = ({ onAgregar, setOpenAgregar }) => {
     if (!producto.imagen.trim()) {
       erroresFormAgregar.imagen = "La imagen es obligatoria";
     }
-    if (!producto.stock.trim()) {
-      erroresFormAgregar.stock = "El stock es obligatorio";
+    if (!producto.stock || producto.stock <= 0) {
+      erroresFormAgregar.stock = "El stock debe ser mayor a 0";
     }
     setErrors(erroresFormAgregar);
     return Object.keys(erroresFormAgregar).length === 0;
@@ -235,11 +235,7 @@ const FormAgregar = ({ onAgregar, setOpenAgregar }) => {
 
           <button type="submit" value="enviar" className="">
             Agregar producto
-          </button>
-
-          <button type="button" onClick={() => setOpenAgregar(false)}>
-            Cancelar
-          </button>
+          </button>          
         </form>
       </div>
     </section>
